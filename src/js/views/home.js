@@ -3,6 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { CharactersCard } from "../component/charactersCard";
 import { PlanetsCard } from "../component/planetsCard";
+import { StarShipsCard } from "../component/starshipsCard";
 import { useParams } from "react-router";
 
 export const Home = () => {
@@ -21,6 +22,11 @@ export const Home = () => {
             actions.getPlanetsById(params.uid);
         }
     }, []);
+    useEffect(() => {
+        if (params.uid && params.entities === "starships") {
+            actions.getStarshipsById(params.uid);
+        }
+    }, []);
 
     return (
         <>
@@ -37,6 +43,13 @@ export const Home = () => {
                     <div className="overflow-auto row flex-nowrap">
                         {store.planets && store.planets.length > 0 ? store.planets.map((planet) => (<PlanetsCard
                             key={planet.uid} entities={planet} entity="planets" addFavorites={actions.addFavorites} />)) : ""}
+                    </div>
+                </div>
+                <div>
+                <h1 className="text-danger mb-4">Starships</h1>
+                    <div className="overflow-auto row flex-nowrap">
+                        {store.starships && store.starships.length > 0 ? store.starships.map((starships) => (<StarShipsCard
+                            key={starships.uid} entities={starships} entity="starships" addFavorites={actions.addFavorites} />)) : ""}
                     </div>
                 </div>
             </div>

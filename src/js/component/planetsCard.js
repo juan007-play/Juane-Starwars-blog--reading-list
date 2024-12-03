@@ -7,7 +7,6 @@ export const PlanetsCard = (props) => {
     const [planetsInformation, setPlanetsInformation] = useState(null);
 
 
-
     useEffect(() => {
         fetch(`https://www.swapi.tech/api/planets/${props.entities.uid}`)
             .then((response) => response.json())

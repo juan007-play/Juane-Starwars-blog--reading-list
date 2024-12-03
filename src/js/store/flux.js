@@ -16,7 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			characters: [],
 			planets: [],
-			favorites: []
+			favorites: [],
+			starships: []
 			
 		},
 		actions: {
@@ -56,6 +57,19 @@ const getState = ({ getStore, getActions, setStore }) => {
 				
 			},
 
+			getInitialStarships: () => {
+				fetch(`https://www.swapi.tech/api/starships`)
+				.then((response) => response.json())
+				.then(response => {setStore({ starships: response.results });})
+				
+			},
+
+			getStarShipsById: (id, setStarShips) => {
+				fetch(`https://www.swapi.tech/api/starships/${id}`)
+				.then((response) => response.json())
+				.then(response => {setStarShips(response.result);})
+				
+			},
 
 			addFavorites: (newFavorite) => {
 				const store = getStore();
