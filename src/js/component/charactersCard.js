@@ -12,7 +12,6 @@ export const CharactersCard = (props) => {
         fetch(`https://www.swapi.tech/api/people/${props.entities.uid}`)
         .then((response) => response.json())
         .then(response => {setCharacterInformation(response.result);})
-        console.log(characterInformation);
         },[props.entities]);
     
     return (

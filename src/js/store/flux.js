@@ -25,13 +25,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-			loadSomeData: () => {
-				fetch('https://www.swapi.tech/api/people/')
-				.then((response) => response.json())
-				.then((data)=> setStore({charaters: data.results}))
+			// loadSomeData: () => {
+			// 	fetch('https://www.swapi.tech/api/people/')
+			// 	.then((response) => response.json())
+			// 	.then((data)=> setStore({charaters: data.results}))
 				
 				
-			},
+			// },
 			getInitialCharacters: () => {
 				fetch('https://www.swapi.tech/api/people')
 				.then((response) => response.json())
@@ -60,7 +60,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getInitialStarships: () => {
 				fetch(`https://www.swapi.tech/api/starships`)
 				.then((response) => response.json())
-				.then(response => {setStore({ starships: response.results });})
+				.then(response => {setStore({ starships: response.results});})
 				
 			},
 

@@ -1,17 +1,22 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { LoremIpsum } from 'react-lorem-ipsum';
 
 export const Planets = (props) => {
     const { store, actions } = useContext(Context);
+
+useEffect (() => {
+    fetch(`https://www.swapi.tech/api/planets/${props.entities.uid}`)
+    .then((response) => response.json())
+    },[props.entities]);
    
 	return (
         <div className="container">
-            <div className="d-flex flex-row">
+            <div className="d-flex flex-row my-2">
                 <div>
-                    <img className="card-img" style={{ width: "30rem" }} src="https://via.placeholder.com/800x600" alt="Card image cap"/>
+                    <img className="card-img" style={{ width: "30rem", height: "auto" }} src={`https://starwars-visualguide.com/assets/img/planets/${props.entities.uid}.jpg`} onError={(e)=> e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'} alt="Card image cap"/>
                 </div>
-                <div className="text-center m-auto text-center">
+                <div className="text-center m-auto text-center text-white mr-3">
                     <h5>{props.entities.properties.name}</h5>
                     <p><LoremIpsum p={1} /></p>
                 </div>

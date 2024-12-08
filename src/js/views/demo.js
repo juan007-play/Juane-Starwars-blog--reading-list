@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Characters } from "../component/Characters";
 import { Planets } from "../component/planets";
+import { StartShips } from "../component/starships";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
-import { StartShips } from "../component/starships";
+
 
 export const Demo = () => {
     const { store, actions } = useContext(Context);
@@ -33,8 +34,8 @@ export const Demo = () => {
 
 
     return (
-
         <div className="container">
+         
             <div>
                 {character ?
                     <Characters

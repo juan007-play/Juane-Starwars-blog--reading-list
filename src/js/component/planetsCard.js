@@ -11,7 +11,6 @@ export const PlanetsCard = (props) => {
         fetch(`https://www.swapi.tech/api/planets/${props.entities.uid}`)
             .then((response) => response.json())
             .then(response => {setPlanetsInformation(response.result);})
-            console.log(planetsInformation);
             },[props.entities]);
 
 	return (

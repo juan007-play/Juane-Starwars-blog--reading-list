@@ -26,7 +26,7 @@ const injectContext = PassedComponent => {
 			state.actions.getInitialCharacters(); 
 			state.actions.getInitialPlanets(); 
 			state.actions.getInitialStarships(); 
-			state.actions.loadSomeData(); 
+			// state.actions.loadSomeData(); 
 							
 			
 		}, []);
