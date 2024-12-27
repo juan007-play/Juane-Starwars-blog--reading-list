@@ -16,8 +16,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			],
 			characters: [],
 			planets: [],
+			starships: [],
 			favorites: [],
-			starships: []
+			vehicles: [],
+			species: [],
 			
 		},
 		actions: {
@@ -60,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getInitialStarships: () => {
 				fetch(`https://www.swapi.tech/api/starships`)
 				.then((response) => response.json())
-				.then(response => {setStore({ starships: response.results});})
+				.then(response => {setStore({ starships: response.results });})
 				
 			},
 
@@ -69,6 +71,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				.then((response) => response.json())
 				.then(response => {setStarShips(response.result);})
 				
+			},
+
+			getInitialVehicles: () => {
+				fetch(`https://www.swapi.tech/api/vehicles`)
+				.then((response) => response.json())
+				.then(response => {setStore({vehicles: response.results});})
+			},
+
+			getInitialVehiclesById: (id, setVehicles) => {
+				fetch(`https://www.swapi.tech/api/vehicles${id}`)
+				.then((response => response.json()))
+				.then(response => {setVehicles(response.result);})
+			},
+
+			getInitialSpecies: () => {
+				fetch(`https://www.swapi.tech/api/species`)
+				.then((response => response.json()))
+				.then(response => {setStore({species: response.results});})
+			},
+
+			getInitialSpeciesById: (id, setSpecies) => {
+				fetch(`https://www.swapi.tech/api/species${id}`)
+				.then((response => response.json()))
+				.then(response => {setSpecies(response.result);})
 			},
 
 			addFavorites: (newFavorite) => {

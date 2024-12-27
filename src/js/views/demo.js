@@ -1,7 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, use } from "react";
 import { Characters } from "../component/Characters";
 import { Planets } from "../component/planets";
 import { StartShips } from "../component/starships";
+import { Vehicles } from "../component/vehicles";
+import { Species } from "../component/species";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
@@ -11,7 +13,9 @@ export const Demo = () => {
     const params = useParams();
     const [character, setCharacter] = useState();
     const [planet, setPlanet] = useState();
-    const [starships, setStarShips] = useState();
+    const [starship, setStarShip] = useState();
+    const [vehicles, setVehicles] = useState();
+    const [species, setSpecies] = useState();
 
 
     useEffect(() => {
@@ -28,9 +32,21 @@ export const Demo = () => {
 
     useEffect(() => {
         if (params.uid && params.entities === "starships") {
-            actions.getInitialStarships(params.uid, setStarShips);
+            actions.getInitialStarships(params.uid, setStarShip);
         }
     }, [params]);
+
+    useEffect (() => {
+        if(params.uid && params.entities === "vehicles"){
+            actions.getInitialVehicles(params.uid, setVehicles);
+        }
+    },[params])
+
+    useEffect (() => {
+        if(params.uid && params.entities === "species"){
+            actions.getInitialSpecies(params.uid, setSpecies);
+        }
+    },[]);
 
 
     return (
@@ -47,9 +63,19 @@ export const Demo = () => {
                         key={planet.uid} entities={planet} entity="planets" /> : ""}
             </div>
             <div>
-                {starships ?
+                {starship ?
                     <StartShips
-                        key={starships.uid} entities={starships} entity="starships" /> : ""}
+                        key={starship.uid} entities={starship} entity="starships" /> : ""}
+            </div>
+            <div>
+                {vehicles ?
+                    <Vehicles
+                        key={vehicles.uid} entities={vehicles} entity="vehicles" /> : ""}
+            </div>
+            <div>
+                {species ?
+                    <Species
+                        key={species.uid} entities={species} entity="species" /> : ""}
             </div>
         </div>
     );
